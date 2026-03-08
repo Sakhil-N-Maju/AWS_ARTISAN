@@ -1,0 +1,34 @@
+
+  // Create all 24 products
+  const products = [
+    // Textiles
+    { artisanIdx: 0, productId: 'ART-KAR-TEX-001', title: 'Hand-Woven Saree', price: 450000, tags: ['textiles', 'saree', 'handwoven', 'traditional', 'karnataka'] },
+    { artisanIdx: 1, productId: 'ART-GUJ-TEX-002', title: 'Organic Cotton Dupatta', price: 220000, tags: ['textiles', 'dupatta', 'organic', 'sustainable', 'gujarat'] },
+    { artisanIdx: 2, productId: 'ART-KAS-TEX-003', title: 'Silk Shawl', price: 890000, tags: ['textiles', 'shawl', 'silk', 'kashmir', 'luxury'] },
+    { artisanIdx: 3, productId: 'ART-RAJ-TEX-004', title: 'Block Print Fabric', price: 180000, tags: ['textiles', 'fabric', 'blockprint', 'rajasthan', 'traditional'] },
+    // Pottery
+    { artisanIdx: 4, productId: 'ART-TN-POT-005', title: 'Terracotta Pot Set', price: 320000, tags: ['pottery', 'terracotta', 'pots', 'tamilnadu', 'traditional'] },
+    { artisanIdx: 5, productId: 'ART-UP-POT-006', title: 'Blue Pottery Bowl', price: 280000, tags: ['pottery', 'bluepottery', 'bowl', 'khurja', 'ceramic'] },
+    { artisanIdx: 6, productId: 'ART-DEL-POT-007', title: 'Hand-Painted Vase', price: 460000, tags: ['pottery', 'vase', 'handpainted', 'delhi', 'contemporary'] },
+    { artisanIdx: 7, productId: 'ART-RAJ-POT-008', title: 'Earthen Dinner Set', price: 580000, tags: ['pottery', 'dinnerware', 'earthenware', 'jaipur', 'functional'] },
+    // Jewelry
+    { artisanIdx: 8, productId: 'ART-RAJ-JEW-009', title: 'Kundan Necklace', price: 890000, tags: ['jewelry', 'kundan', 'necklace', 'rajasthan', 'traditional'] },
+    { artisanIdx: 9, productId: 'ART-RAJ-JEW-010', title: 'Meenakari Earrings', price: 350000, tags: ['jewelry', 'meenakari', 'earrings', 'jaipur', 'enamel'] },
+    { artisanIdx: 10, productId: 'ART-TN-JEW-011', title: 'Temple Jewelry Set', price: 620000, tags: ['jewelry', 'temple', 'traditional', 'tamilnadu', 'gold'] },
+    { artisanIdx: 11, productId: 'ART-OD-JEW-012', title: 'Silver Bangles', price: 440000, tags: ['jewelry', 'silver', 'bangles', 'odisha', 'filigree'] },
+    // Woodcraft
+    { artisanIdx: 12, productId: 'ART-KER-WOOD-013', title: 'Carved Wooden Panel', price: 560000, tags: ['woodcraft', 'carving', 'panel', 'kerala', 'traditional'] },
+    { artisanIdx: 13, productId: 'ART-KAR-WOOD-014', title: 'Sandalwood Box', price: 390000, tags: ['woodcraft', 'sandalwood', 'box', 'mysore', 'aromatic'] },
+    { artisanIdx: 14, productId: 'ART-UP-WOOD-015', title: 'Wooden Jewelry Box', price: 280000, tags: ['woodcraft', 'box', 'jewelry', 'functional', 'traditional'] },
+    { artisanIdx: 15, productId: 'ART-UP-WOOD-016', title: 'Inlay Work Table', price: 1250000, tags: ['woodcraft', 'inlay', 'table', 'agra', 'mughal'] },
+    // Metalwork
+    { artisanIdx: 16, productId: 'ART-UP-MET-017', title: 'Brass Diya Set', price: 220000, tags: ['metalwork', 'brass', 'diya', 'moradabad', 'religious'] },
+    { artisanIdx: 17, productId: 'ART-MP-MET-018', title: 'Copper Utensil Set', price: 540000, tags: ['metalwork', 'copper', 'utensils', 'madhyapradesh', 'traditional'] },
+    { artisanIdx: 18, productId: 'ART-RAJ-MET-019', title: 'Iron Wall Hanging', price: 380000, tags: ['metalwork', 'iron', 'wallart', 'rajasthan', 'decorative'] },
+    { artisanIdx: 19, productId: 'ART-TN-MET-020', title: 'Bronze Sculpture', price: 890000, tags: ['metalwork', 'bronze', 'sculpture', 'tamilnadu', 'traditional'] },
+    // Paintings
+    { artisanIdx: 20, productId: 'ART-RAJ-PAINT-021', title: 'Miniature Mughal Painting', price: 680000, tags: ['painting', 'miniature', 'mughal', 'rajasthan', 'traditional'] },
+    { artisanIdx: 21, productId: 'ART-BIH-PAINT-022', title: 'Madhubani Artwork', price: 420000, tags: ['painting', 'madhubani', 'folkart', 'bihar', 'traditional'] },
+    { artisanIdx: 22, productId: 'ART-MAH-PAINT-023', title: 'Warli Painting', price: 360000, tags: ['painting', 'warli', 'tribal', 'maharashtra', 'folkart'] },
+    { artisanIdx: 23, productId: 'ART-TN-PAINT-024', title: 'Tanjore Painting', price: 920000, tags: ['painting', 'tanjore', 'traditional', 'tamilnadu', 'gold'] },
+  ];

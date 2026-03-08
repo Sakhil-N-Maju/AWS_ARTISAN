@@ -1,0 +1,29 @@
+# Artisan AI Terraform Variables
+# Copy this file to terraform.tfvars and update with your values
+
+# AWS Configuration
+aws_region  = "ap-south-1"  # Mumbai region (closest to India)
+environment = "prod"
+project_name = "artisan-ai"
+
+# Network Configuration
+vpc_cidr = "10.0.0.0/16"
+
+# Database Configuration
+db_instance_class    = "db.t3.micro"     # Start small, scale as needed
+db_allocated_storage = 20                 # GB
+db_name              = "artisanai"
+db_username          = "artisanadmin"
+
+# Cache Configuration
+redis_node_type       = "cache.t3.micro"  # Start small, scale as needed
+redis_num_cache_nodes = 1                 # Single node for dev/staging
+
+# CDN Configuration
+enable_cloudfront = true
+
+# Security Configuration
+allowed_cidr_blocks = ["0.0.0.0/0"]  # Restrict this in production!
+
+# Tags (optional)
+# Add custom tags as needed
