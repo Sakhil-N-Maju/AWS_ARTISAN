@@ -1,0 +1,163 @@
+// Artisan AI Database Schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Artisan {
+  id                String    @id @default(uuid())
+  name              String
+  phone             String    @unique
+  whatsappNumber    String
+  email             String?
+  craftType         String
+  region            String
+  language          String
+  status            String    @default("pending")
+  verificationNotes String?
+  idProofUrl        String?
+  profilePhotoUrl   String?
+  bio               String?
+  address           Json?
+  bankDetails       String?   // Encrypted JSON
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  verifiedAt        DateTime?
+  verifiedBy        String?
+  
+  products          Product[]
+  orders            Order[]
+  messages          WhatsAppMessage[]
+  
+  @@index([status])
+  @@index([craftType])
+  @@index([region])
+  @@map("artisans")
+}
+
+model Product {
+  id                    String    @id @default(uuid())
+  artisanId             String
+  productId             String    @unique
+  title                 String
+  description           String
+  artisanStory          String
+  culturalContext       String?
+  material              String[]
+  dimensions            Json?
+  weight                Int?
+  colors                String[]
+  tags                  String[]
+  price                 Int
+  suggestedPrice        Int?
+  currency              String    @default("INR")
+  images                Json[]
+  videoUrl              String?
+  originalVoiceUrl      String?
+  transcription         String?
+  transcriptionLanguage String?
+  aiGeneratedFields     String[]
+  status                String    @default("draft")
+  publishedAt           DateTime?
+  qrCodeUrl             String
+  certificateUrl        String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  viewCount             Int       @default(0)
+  favoriteCount         Int       @default(0)
+  
+  artisan               Artisan   @relation(fields: [artisanId], references: [id])
+  orders                Order[]
+  
+  @@index([artisanId])
+  @@index([status])
+  @@index([tags])
+  @@map("products")
+}
+
+model Order {
+  id              String    @id @default(uuid())
+  orderNumber     String    @unique
+  productId       String
+  artisanId       String
+  customer        Json
+  productPrice    Int
+  shippingFee     Int
+  platformFee     Int
+  totalAmount     Int
+  paymentId       String?
+  paymentStatus   String    @default("pending")
+  paymentMethod   String?
+  paidAt          DateTime?
+  status          String    @default("pending")
+  trackingNumber  String?
+  shippedAt       DateTime?
+  deliveredAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  notes           String?
+  
+  product         Product   @relation(fields: [productId], references: [id])
+  artisan         Artisan   @relation(fields: [artisanId], references: [id])
+  
+  @@index([artisanId])
+  @@index([status])
+  @@index([paymentStatus])
+  @@map("orders")
+}
+
+model WhatsAppMessage {
+  id                    String    @id @default(uuid())
+  artisanId             String
+  messageId             String    @unique
+  from                  String
+  timestamp             DateTime
+  type                  String
+  content               String?
+  mediaUrl              String?
+  mimeType              String?
+  status                String    @default("received")
+  processingStartedAt   DateTime?
+  processingCompletedAt DateTime?
+  errorMessage          String?
+  productId             String?
+  createdAt             DateTime  @default(now())
+  
+  artisan               Artisan   @relation(fields: [artisanId], references: [id])
+  
+  @@index([artisanId])
+  @@index([status])
+  @@map("whatsapp_messages")
+}
+
+model Admin {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  name         String
+  passwordHash String
+  role         String
+  isActive     Boolean   @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  
+  @@map("admins")
+}
+
+model AuditLog {
+  id          String   @id @default(uuid())
+  entityType  String
+  entityId    String
+  action      String
+  performedBy String
+  changes     Json?
+  timestamp   DateTime @default(now())
+  
+  @@index([entityType, entityId])
+  @@index([timestamp])
+  @@map("audit_logs")
+}

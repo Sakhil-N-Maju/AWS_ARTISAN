@@ -1,0 +1,61 @@
+{
+  "phases": {
+    "phase-1": {
+      "phaseId": "phase-1",
+      "completed": false
+    },
+    "phase-2": {
+      "phaseId": "phase-2",
+      "completed": false
+    },
+    "phase-3": {
+      "phaseId": "phase-3",
+      "completed": false
+    },
+    "phase-4": {
+      "phaseId": "phase-4",
+      "completed": false
+    },
+    "phase-5": {
+      "phaseId": "phase-5",
+      "completed": false
+    },
+    "phase-6": {
+      "phaseId": "phase-6",
+      "completed": false
+    },
+    "phase-7": {
+      "phaseId": "phase-7",
+      "completed": false
+    },
+    "phase-8": {
+      "phaseId": "phase-8",
+      "completed": false
+    },
+    "phase-9": {
+      "phaseId": "phase-9",
+      "completed": false
+    },
+    "phase-10": {
+      "phaseId": "phase-10",
+      "completed": false
+    },
+    "phase-11": {
+      "phaseId": "phase-11",
+      "completed": false
+    },
+    "phase-12": {
+      "phaseId": "phase-12",
+      "completed": false
+    },
+    "phase-13": {
+      "phaseId": "phase-13",
+      "completed": false
+    },
+    "phase-14": {
+      "phaseId": "phase-14",
+      "completed": false
+    }
+  },
+  "lastUpdated": "2026-03-05T12:19:44.573Z"
+}

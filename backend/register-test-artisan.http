@@ -1,0 +1,37 @@
+### Register Test Artisan (Your Phone Number)
+POST http://localhost:3001/api/artisans
+Content-Type: application/json
+
+{
+  "name": "Test Artisan",
+  "email": "test@artisanai.in",
+  "phone": "+918590955502",
+  "whatsappNumber": "+918590955502",
+  "craftType": "Pottery",
+  "region": "Karnataka",
+  "bio": "Traditional pottery maker testing the WhatsApp AI system",
+  "language": "english",
+  "status": "verified"
+}
+
+### Get All Artisans
+GET http://localhost:3001/api/artisans
+
+### Get Artisan by Phone
+GET http://localhost:3001/api/artisans?phone=+918590955502
+
+### Test Webhook Verification (GET)
+GET http://localhost:3001/api/whatsapp/webhook?hub.mode=subscribe&hub.verify_token=artisan_ai_webhook_secret_2026&hub.challenge=test_challenge
+
+### Simulate WhatsApp Message (POST) - For local testing without Twilio
+POST http://localhost:3001/api/whatsapp/webhook
+Content-Type: application/json
+X-Twilio-Signature: test_signature_for_local_testing
+
+{
+  "From": "whatsapp:+918590955502",
+  "To": "whatsapp:+14155238886",
+  "Body": "Test message",
+  "NumMedia": "0",
+  "MessageSid": "SM1234567890"
+}
