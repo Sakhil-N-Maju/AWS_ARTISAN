@@ -1,0 +1,57 @@
+services:
+  # Backend API Service
+  - type: web
+    name: artisan-ai-backend
+    env: node
+    region: singapore
+    plan: free
+    buildCommand: cd backend && npm install && npx prisma generate
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: DATABASE_URL
+        fromDatabase:
+          name: artisan-ai-db
+          property: connectionString
+      - key: AWS_REGION
+        sync: false
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
+      - key: S3_BUCKET
+        sync: false
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_WHATSAPP_NUMBER
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: USE_MOCK_BEDROCK
+        value: true
+
+  # Frontend Static Site
+  - type: web
+    name: artisan-ai-frontend
+    env: static
+    region: singapore
+    plan: free
+    buildCommand: cd frontend-new && npm install && npm run build
+    staticPublishPath: frontend-new/.next
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          type: web
+          name: artisan-ai-backend
+          envVarKey: RENDER_EXTERNAL_URL
+
+databases:
+  - name: artisan-ai-db
+    databaseName: artisan_ai
+    user: artisan
+    plan: free
