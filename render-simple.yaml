@@ -1,0 +1,61 @@
+services:
+  # Backend API Service (No Docker)
+  - type: web
+    name: artisan-ai-backend
+    runtime: node
+    region: singapore
+    plan: free
+    rootDir: backend
+    buildCommand: npm install && npx prisma generate
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: artisan-ai-db
+          property: connectionString
+      - key: AWS_REGION
+        value: ap-south-1
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
+      - key: S3_BUCKET
+        value: artisan-ai-media
+      - key: BEDROCK_MODEL_ID
+        value: anthropic.claude-3-sonnet-20240229-v1:0
+      - key: USE_MOCK_BEDROCK
+        value: "true"
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_WHATSAPP_NUMBER
+        value: +14155238886
+      - key: JWT_SECRET
+        value: 1710762ca4a8871803ff5a00df6ff36d58e782b02f3bcba2314f0c54f97cfe7eea77e9da53e7fa40514e9d7bce51a11442709470b23c233d95ab344d274ebf21
+      - key: FRONTEND_URL
+        value: https://artisan-ai-frontend.onrender.com
+
+  # Frontend Static Site
+  - type: web
+    name: artisan-ai-frontend
+    runtime: node
+    region: singapore
+    plan: free
+    rootDir: frontend-new
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://artisan-ai-backend.onrender.com
+
+databases:
+  - name: artisan-ai-db
+    databaseName: artisan_ai
+    user: artisan
+    plan: free
+    region: singapore
