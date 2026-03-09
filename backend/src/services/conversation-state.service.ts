@@ -73,10 +73,10 @@ class ConversationStateService {
   /**
    * Update pending product field
    */
-  updatePendingProduct(artisanPhone: string, field: keyof NonNullable<ConversationState['pendingProduct']>, value: any): void {
+  updatePendingProduct(artisanPhone: string, field: keyof NonNullable<ConversationState['pendingProduct']>, value: string | number): void {
     const state = this.getState(artisanPhone);
     if (state?.pendingProduct) {
-      state.pendingProduct[field] = value;
+      (state.pendingProduct[field] as string | number) = value;
       state.lastUpdated = new Date();
       this.states.set(artisanPhone, state);
       logger.info('Pending product updated', { artisanPhone, field, value });
